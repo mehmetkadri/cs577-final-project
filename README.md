@@ -8,7 +8,7 @@ Using python version 3.7 (since Python 3.5.2 had problems installing dm-tree whi
 ```
 git clone https://github.com/wi-pi/face-off.git
 python -m pip install venv
-python3.5 -m venv /path/to/new/virtual/environment
+python3.7 -m venv /path/to/new/virtual/environment
 source /path/to/new/virtual/environment/bin/activate
 pip install -e .
 pip install -r requirements.txt
