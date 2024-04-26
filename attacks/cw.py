@@ -9,9 +9,11 @@ import sys, math
 import tensorflow as tf
 import numpy as np
 from attacks.tv_loss import get_tv_loss
-from cleverhans.compat import reduce_sum, reduce_max
+#from cleverhans import reduce_sum, reduce_max
 from utils.recog import *
 import Config
+reduce_sum = tf.reduce_sum
+reduce_max = tf.reduce_max
 
 BINARY_SEARCH_STEPS = 9  # number of times to adjust the constant with binary search
 MAX_ITERATIONS = 10000   # number of iterations to perform gradient descent

@@ -1,15 +1,15 @@
 import numpy as np
-from cleverhans.model import Model, CallableModelWrapper
-from cleverhans.attacks import Attack
+from cleverhans import Model, CallableModelWrapper
+from cleverhans import Attack
 import tensorflow as tf
 from abc import ABCMeta
 import warnings
 import collections
 
 import cleverhans.utils as utils
-from cleverhans.model import Model, CallableModelWrapper
+from cleverhans import Model, CallableModelWrapper
 from attacks.tv_loss import get_tv_loss
-from cleverhans.utils_tf import clip_eta
+from cleverhans import clip_eta
 
 _logger = utils.create_logger("cleverhans.attacks")
 

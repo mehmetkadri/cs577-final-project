@@ -6,13 +6,13 @@ import numpy as np
 import os
 import cv2
 from numpy import genfromtxt
-from keras.layers import Conv2D, ZeroPadding2D, Activation, Input, merge
+from keras.layers import Conv2D, ZeroPadding2D, Activation, Input, Concatenate  
 from keras.models import Model
-from keras.layers.normalization import BatchNormalization
-from keras.layers.pooling import MaxPooling2D, AveragePooling2D
+from keras.layers import BatchNormalization
+from keras.layers import MaxPooling2D, AveragePooling2D
 import h5py
-#import matplotlib.pyplot as plt
-
+import matplotlib.pyplot as plt
+from keras.backend import get_session as _get_session
 
 _FLOATX = 'float32'
 
@@ -137,8 +137,8 @@ def load_weights_from_FaceNet(FRmodel):
     for name in weights:
         if FRmodel.get_layer(name) != None:
             FRmodel.get_layer(name).set_weights(weights_dict[name])
-        elif model.get_layer(name) != None:
-            model.get_layer(name).set_weights(weights_dict[name])
+        elif FRmodel.get_layer(name) != None:
+            FRmodel.get_layer(name).set_weights(weights_dict[name])
 
 def load_weights():
     # Set weights path

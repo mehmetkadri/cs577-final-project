@@ -1,4 +1,4 @@
-import scipy.misc as ms 
+#import scipy.misc as ms 
 import imageio
 import numpy as np 
 import os,sys

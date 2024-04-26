@@ -7,10 +7,10 @@ from numpy import genfromtxt
 from keras import backend as K
 from keras.layers import Conv2D, ZeroPadding2D, Activation, Input, merge
 from keras.models import Model
-from keras.layers.normalization import BatchNormalization
-from keras.layers.pooling import MaxPooling2D, AveragePooling2D
+from keras.layers import BatchNormalization
+from keras.layers import MaxPooling2D, AveragePooling2D
 import utils.fr_utils as fr_utils
-from keras.layers.core import Lambda, Flatten, Dense
+from keras.layers import Lambda, Flatten, Dense
 
 def inception_block_1a(X):
     """
