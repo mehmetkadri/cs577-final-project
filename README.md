@@ -4,7 +4,7 @@
 Face-Off is a privacy-preserving framework that introduces strategic perturbations to images of the user’s face to prevent it from being correctly recognized. By leveraging adversarial examples generated on faces in a black-box setting, we find that our perturbations transfer to proprietary face recognition APIs such as AWS Rekognition, Azure Face, and Face++.
 
 ### Installation
-Using python version 3.5.2
+Using python version 3.7 (since Python 3.5.2 had problems installing dm-tree while installing tensorflow)
 ```
 git clone https://github.com/wi-pi/face-off.git
 python -m pip install venv
