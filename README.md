@@ -4,7 +4,7 @@
 
 This repository contains the replication package of our project in two parts; Gaussian Blur Obfuscation, and Salient Feature Obfuscation. It also includes our trial of updating the study "FaceOff", which is a failed attempt.
 
-This project is our final project for the **Bilkent CS 577: Data Privacy** Course.
+This project is our final project for the **Bilkent CS 577: Data Privacy** Course. We extend our deepest gratitude to Assistant Professor Sinem Sav for her invaluable guidance throughout this project.
 
 **Group 3, Members**:
 
@@ -101,7 +101,7 @@ The datasets used in our project consists of face images. FaceScrub also include
 
 ![Example Image from LFW](/figs/Alfredo_di_Stefano_0001.jpg)
 
-##### FaceScrub/Lisa Kudrow
+##### FaceScrub
 
 ![Example Image from FaceScrub](/figs/Original_Image_FaceScrub.jpg)
 
@@ -114,7 +114,7 @@ The datasets used in our project consists of face images. FaceScrub also include
 
 ##### Example Result Image
 
-![Gaussian Blur example 1](/figs/gaussian_blur_1.jpg)
+![Gaussian Blur example 1](/figs/gaussian_blur_2.jpg)
 
 ##### Accuracy
 
@@ -128,6 +128,7 @@ The datasets used in our project consists of face images. FaceScrub also include
 ##### Example Result Images
 
 ![Applied Salient Feature Obfuscation](/figs/Salient_Image_FaceScrub_1.jpg)
+![Applied Whole Face Obfuscation](/figs/Salient_Image_FaceScrub_2.jpg)
 
 ##### Accuracy
 
