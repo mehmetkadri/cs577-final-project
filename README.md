@@ -99,7 +99,7 @@ The datasets used in our project consists of face images. FaceScrub also include
 
 ##### LFW/
 
-[comment]: <> (![Example Image from LFW](/figs/Original_Image_LFW.jpg))
+![Example Image from LFW](/figs/Salient_Image_FaceScrub_2.jpg)
 
 ##### FaceScrub/Lisa Kudrow
 
@@ -129,7 +129,6 @@ The datasets used in our project consists of face images. FaceScrub also include
 ##### Example Result Images
 
 ![Applied Salient Feature Obfuscation](/figs/Salient_Image_FaceScrub_1.jpg)
-![Applied Whole Face Obfuscation](/figs/Salient_Image_FaceScrub_2.jpg)
 
 ##### Accuracy
 
