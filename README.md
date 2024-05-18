@@ -1,11 +1,13 @@
 # cs577-final-project
+
 **Efficient Image Poisoning as Defense:** Disrupting Profile Matching on OSNs and Preserving Human Comprehension
 
 This repository contains the replication package of our project in two parts; Gaussian Blur Obfuscation, and Salient Feature Obfuscation. It also includes our trial of updating the study "FaceOff", which is a failed attempt.
 
-This project is our final project for the **Bilkent CS 577: Data Privacy** Course. 
+This project is our final project for the **Bilkent CS 577: Data Privacy** Course.
 
 **Group 3, Members**:
+
 - Ecem İlgün
 - Mehmet Kadri Gofralilar
 - Kousar Kousar
@@ -35,21 +37,30 @@ pip3 install opencv-python numpy matplotlib mtcnn keras-facenet tensorflow scipy
 ```
 
 ## Usage
-### GaussianBlurObfuscation
-This module is used for applying Gaussian Blur obfuscation to the whole face and calculating the accuracy. 
 
-```bash
-# Apply 
+### GaussianBlurObfuscation
+
+This module is used for applying Gaussian Blur obfuscation to the whole face and calculating the accuracy.
+
+Steps:
+
+1. Just open the file in VSCode or any editor of your choice.
+2. Select the python jupyter notebook kernal of choice.
+3. Run the cells one by one
+<!--
+
+````bash
+# Apply
 python3 gaussian_blur_bbox_obfuscation/
-```
+``` -->
 
 ### SalientFeatureObfuscation
-This module is used for downloading images from the FaceScrub dataset, applying darkening obfuscation to salient features and the whole face, and calculating the metrics. 
+This module is used for downloading images from the FaceScrub dataset, applying darkening obfuscation to salient features and the whole face, and calculating the metrics.
 
 ```bash
 # Download Images, Apply Obfuscation and Print Metrics
 python3 salient_feature_obfuscation/main.py
-```
+````
 
 Saving metrics is optional and should be provided if wanted as follows.
 
@@ -71,8 +82,8 @@ python3 salient_feature_obfuscation/main.py -n True -c {number of random people 
 You can check `--help` for details of these parameters.
 
 ### FaceOffReplication
-This module is an updated version of FaceOff repository originally forked from "https://github.com/wi-pi/face-off". There are still errors, but the usage is still the same as original FaceOff. You may try to run and debug following the instructions given in the original repository.
 
+This module is an updated version of FaceOff repository originally forked from "https://github.com/wi-pi/face-off". There are still errors, but the usage is still the same as original FaceOff. You may try to run and debug following the instructions given in the original repository.
 
 ### Dataset
 
@@ -87,6 +98,7 @@ The datasets used in our project consists of face images. FaceScrub also include
 #### Example Images
 
 ##### LFW/
+
 [comment]: <> (![Example Image from LFW](/figs/Original_Image_LFW.jpg))
 
 ##### FaceScrub/Lisa Kudrow
@@ -105,10 +117,15 @@ The datasets used in our project consists of face images. FaceScrub also include
 [comment]: <> (- **Text and Code Embedding Size**: 768)
 [comment]: <> (- **Classification Head**: Linear Layer ((32 + 768 + 768), 1))
 
+![Gaussian Blur example 1](/figs/gaussian_blur_1.jpg)
+![Gaussian Blur example 2](/figs/gaussian_blur_2.jpg)
+
 ##### Example Result Image
+
 [comment]: <> (![Applied Gaussian Blur](/figs/))
 
 ##### Accuracy
+
 [comment]: <> (![Accuracy Results](/figs/))
 
 #### Salient Feature Obfuscation
@@ -117,10 +134,12 @@ The datasets used in our project consists of face images. FaceScrub also include
 - **Number of Images per Person**: 3
 
 ##### Example Result Images
+
 ![Applied Salient Feature Obfuscation](/figs/Salient_Image_FaceScrub_1.jpg)
 ![Applied Whole Face Obfuscation](/figs/Salient_Image_FaceScrub_2.jpg)
 
 ##### Accuracy
+
 ![Accuracy Results](/figs/Accuracy_FaceScrub.png)
 
 #### Observations
@@ -128,17 +147,3 @@ The datasets used in our project consists of face images. FaceScrub also include
 - The 5% approximate decrease in accuracy shows the potential of the boundary box Gaussian blur in evading recognition models. But this result is still not much reliable due to the small sample size used for training and testing the model.
 
 - Our proposed salient feature obfuscation increased the accuracy, which means the matching rate is higher and the accuracy is lower compared to no obfuscation, therefore needs improvements in future.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
