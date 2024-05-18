@@ -116,7 +116,7 @@ The datasets used in our project consists of face images. FaceScrub also include
 - **Number of Chosen People**: 200
 - **Number of Images per Person**: 3
 
-##### Example Result Image
+##### Example Result Images
 ![Applied Salient Feature Obfuscation](/figs/Salient_Image_FaceScrub_1.jpg)
 ![Applied Whole Face Obfuscation](/figs/Salient_Image_FaceScrub_2.jpg)
 
