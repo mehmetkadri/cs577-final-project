@@ -97,9 +97,9 @@ The datasets used in our project consists of face images. FaceScrub also include
 
 #### Example Images
 
-##### LFW/
+##### LFW
 
-![Example Image from LFW](/figs/gaussian_blur_2.jpg)
+![Example Image from LFW](/figs/Alfredo_di_Stefano_0001.jpg)
 
 ##### FaceScrub/Lisa Kudrow
 
@@ -115,7 +115,6 @@ The datasets used in our project consists of face images. FaceScrub also include
 ##### Example Result Image
 
 ![Gaussian Blur example 1](/figs/gaussian_blur_1.jpg)
-![Gaussian Blur example 2](/figs/gaussian_blur_2.jpg)
 
 ##### Accuracy
 
