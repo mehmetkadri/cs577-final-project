@@ -109,24 +109,17 @@ The datasets used in our project consists of face images. FaceScrub also include
 
 #### Gaussian Blur Obfuscation
 
-[comment]: <> (FaceNet configuration can be added as follows:)
-[comment]: <> (- **Optimizer**: Adam)
-[comment]: <> (- **Learning Rate**: 1e-3)
-[comment]: <> (- **Epochs**: 15)
-[comment]: <> (- **Meta-data Embedding Size**: 32)
-[comment]: <> (- **Text and Code Embedding Size**: 768)
-[comment]: <> (- **Classification Head**: Linear Layer ((32 + 768 + 768), 1))
+- **Total Number of images**: 618
+- **Data set used**: DeepFunneled
+
+##### Example Result Image
 
 ![Gaussian Blur example 1](/figs/gaussian_blur_1.jpg)
 ![Gaussian Blur example 2](/figs/gaussian_blur_2.jpg)
 
-##### Example Result Image
-
-[comment]: <> (![Applied Gaussian Blur](/figs/))
-
 ##### Accuracy
 
-[comment]: <> (![Accuracy Results](/figs/))
+![Gaussian Blur example 1](/figs/gaussian_blur_result.png)
 
 #### Salient Feature Obfuscation
 
