@@ -99,7 +99,7 @@ The datasets used in our project consists of face images. FaceScrub also include
 
 ##### LFW/
 
-![Example Image from LFW](/figs/Salient_Image_FaceScrub_2.jpg)
+![Example Image from LFW](/figs/gaussian_blur_2.jpg)
 
 ##### FaceScrub/Lisa Kudrow
 
