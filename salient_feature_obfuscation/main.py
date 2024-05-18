@@ -6,23 +6,7 @@ import cv2 as cv
 import numpy as np
 import face_recognition
 from matplotlib import pyplot as plt
-
-os.chdir("kadri")
-
-json_file = "images.json"
-
-downloaded_images_json = "downloaded_images.json"
-
-originals_1 = []
-salients_1 = []
-bboxes_1 = []
-face_locations_1 = []
-
-originals_2 = []
-salients_2 = []
-bboxes_2 = []
-face_locations_2 = []
-
+import argparse
 
 def organize_metadata():
 
@@ -89,7 +73,7 @@ def organize_metadata():
 
     return images
 
-def download_image(images, timeout=5, headers={'User-Agent': 'Mozilla/5.0'}):
+def download_image(images, max_images=3, timeout=5, headers={'User-Agent': 'Mozilla/5.0'}):
     
     os.chdir("org_images")
     downloaded_images = []
@@ -102,8 +86,8 @@ def download_image(images, timeout=5, headers={'User-Agent': 'Mozilla/5.0'}):
 
         if not os.path.isdir(name):
             os.mkdir(name)
-        if len(os.listdir(name)) < 3:
-            print("\n", name , " has less than 3 images.\n")
+        if len(os.listdir(name)) < max_images:
+            print("\n", name , " has less than ", max_images, " images. Downloading images...")
             got_images = False
         if got_images:
             files = os.listdir(name)
@@ -113,7 +97,7 @@ def download_image(images, timeout=5, headers={'User-Agent': 'Mozilla/5.0'}):
             counter = 0
             for image in image_data:
                 save_path = f"{name}/{image['id']}.jpg"
-                if counter == 3:
+                if counter == max_images:
                     break
                 if os.path.isfile(save_path):
                     downloaded_images.append(save_path)
@@ -210,14 +194,14 @@ def bbox(image_path, output_path, face):
     # Save the modified image
     cv.imwrite(output_path, image)
 
-def choose_random():
+def choose_random(count, choose_new):
     # get 200 random people
     # if chosen_people.json exists, load the chosen people from the json file
-    if os.path.isfile("chosen_people.json"):
+    if os.path.isfile("chosen_people.json") and not choose_new:
         chosen_people = json.load(open("chosen_people.json", "r"))
     else:
         people = list(images.keys())
-        chosen_people = random.sample(people, 200)
+        chosen_people = random.sample(people, count)
         json.dump(chosen_people, open("chosen_people.json", "w"), indent=4)
 
     # read downloaded images
@@ -463,23 +447,103 @@ def calculate_all_metrics(type, tp, fp, tn, fn):
     print(type, " Recall:", recall)
     print(type, " F1 Score:", f1_score)
 
-images = organize_metadata()
+    return accuracy, precision, recall, f1_score
 
-download_image(images)
 
-chosen_images = choose_random()
+def parseArguments():
+    # Create argument parser
+    parser = argparse.ArgumentParser()
 
-apply_perturbation(chosen_images)
+    # Positional mandatory arguments
+    # parser.add_argument("get_metrics", help="Save metrics to a JSON file.", type=bool)
 
-all_images = get_all_images(chosen_images, images)
+    # Optional arguments
+    parser.add_argument("-m", "--metrics", help="Save metrics to a JSON file.", type=bool, default=False)
+    parser.add_argument("-ni", "--num_images", help="Number of images per person to download.", type=int, default=3)
+    parser.add_argument("-c", "--count", help="Number of people to choose.", type=int, default=200)
+    parser.add_argument("-n", "--new", help="Choose new people.", type=bool, default=False)
 
-# plot_single_celeb(all_images)
+    # Print version
+    parser.add_argument("--version", action="version", version='%(prog)s - Version 1.0')
 
-tp_second, fp_second, tp_salient, fp_salient, tp_bbox, fp_bbox, tp_salient_bbox, fp_salient_bbox = calculate_metrics_positive(all_images)
+    # Parse arguments
+    args = parser.parse_args()
 
-tn_second, fn_second, tn_salient, fn_salient, tn_bbox, fn_bbox, tn_salient_bbox, fn_salient_bbox = calculate_metrics_negative(all_images)
+    return args
 
-calculate_all_metrics("Second Original and Original Match",tp_second, fp_second, tn_second, fn_second)
-calculate_all_metrics("Salient and Original Match",tp_salient, fp_salient, tn_salient, fn_salient)
-calculate_all_metrics("Bbox and Original Match",tp_bbox, fp_bbox, tn_bbox, fn_bbox)
-calculate_all_metrics("Salient and Bbox Match",tp_salient_bbox, fp_salient_bbox, tn_salient_bbox, fn_salient_bbox)
+if __name__ == "__main__":
+
+    os.chdir("salient_feature_obfuscation")
+
+    args = parseArguments()
+
+    json_file = "images.json"
+
+    downloaded_images_json = "downloaded_images.json"
+
+    originals_1 = []
+    salients_1 = []
+    bboxes_1 = []
+    face_locations_1 = []
+
+    originals_2 = []
+    salients_2 = []
+    bboxes_2 = []
+    face_locations_2 = []
+
+    images = organize_metadata()
+
+    num_images = args.num_images
+
+    download_image(images, num_images)
+
+    count = args.count
+    choose_new = args.new
+
+    chosen_images = choose_random()
+
+    apply_perturbation(chosen_images)
+
+    all_images = get_all_images(chosen_images, images)
+
+    # plot_single_celeb(all_images)
+
+    tp_second, fp_second, tp_salient, fp_salient, tp_bbox, fp_bbox, tp_salient_bbox, fp_salient_bbox = calculate_metrics_positive(all_images)
+
+    tn_second, fn_second, tn_salient, fn_salient, tn_bbox, fn_bbox, tn_salient_bbox, fn_salient_bbox = calculate_metrics_negative(all_images)
+
+    accuracy_second, precision_second, recall_second, f1_score_second = calculate_all_metrics("Original Images Match",tp_second, fp_second, tn_second, fn_second)
+    accuracy_salient, precision_salient, recall_salient, f1_score_salient = calculate_all_metrics("Salient Feature Obfuscation Match",tp_salient, fp_salient, tn_salient, fn_salient)
+    accuracy_bbox, precision_bbox, recall_bbox, f1_score_bbox = calculate_all_metrics("Whole Face Obfuscation Match",tp_bbox, fp_bbox, tn_bbox, fn_bbox)
+    accuracy_salient_bbox, precision_salient_bbox, recall_salient_bbox, f1_score_salient_bbox = calculate_all_metrics("Salient Feature vs Whole Face Obfuscation Match",tp_salient_bbox, fp_salient_bbox, tn_salient_bbox, fn_salient_bbox)
+
+    if args.metrics:
+        metrics = {}
+        metrics_second = {
+            "accuracy": accuracy_second,
+            "precision": precision_second,
+            "recall": recall_second,
+            "f1_score": f1_score_second
+        }
+        metrics_salient = {
+            "accuracy": accuracy_salient,
+            "precision": precision_salient,
+            "recall": recall_salient,
+            "f1_score": f1_score_salient
+        }
+        metrics_bbox = {
+            "accuracy": accuracy_bbox,
+            "precision": precision_bbox,
+            "recall": recall_bbox,
+            "f1_score": f1_score_bbox
+        }
+        metrics_salient_bbox = {
+            "accuracy": accuracy_salient_bbox,
+            "precision": precision_salient_bbox,
+            "recall": recall_salient_bbox,
+            "f1_score": f1_score_salient_bbox
+        }
+        metrics["Originals"] = metrics_second
+        metrics["Salient"] = metrics_salient
+        metrics["Face"] = metrics_bbox
+        metrics["Salient_vs_Face"] = metrics_salient_bbox
