@@ -1,9 +1,9 @@
 # cs577-final-project
 **Efficient Image Poisoning as Defense:** Disrupting Profile Matching on OSNs and Preserving Human Comprehension
 
-This repository contains the implementation of our predictive model (`StarHub`) for GitHub repository popularity in the future using PyTorch and the Transformers library. It also includes an additional `Featurehub` model that predicts the popularity of a repository by using only the meta-data of that repository.
+This repository contains the replication package of our project in two parts; Gaussian Blur Obfuscation, and Salient Feature Obfuscation. It also includes our trial of updating the study "FaceOff", which is a failed attempt.
 
-This project is our final project for the **Bilkent CS 588: Data Science for Software Engineering** Course. We extend our gratitude to **Professor Eray Tüzün** for his invaluable guidance and to our Teaching Assistant, **Muhammad Umair Ahmed**, for his insightful comments and support throughout all stages of the project.
+This project is our final project for the **Bilkent CS 577: Data Privacy** Course. 
 
 **Group 3, Members**:
 - Ecem İlgün
